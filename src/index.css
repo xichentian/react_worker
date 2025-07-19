@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #8BB8E8; /* 更柔和的蓝色 */
+  --primary-dark: #6A9BCF;
+  --primary-light: #E1F0FA;
+  --gray-light: #F0F4F8;
+  --gray: #CBD5E0;
+  --gray-dark: #718096;
+  --bg: linear-gradient(135deg, #F7FAFC 0%, #EBF4F8 100%);
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --warning-bg: #FFF8F0;
+  --warning-border: #F6AD55;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, 
+               Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: #4A5568;
+  line-height: 1.6;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  padding: 25px;
+  margin-top: 20px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+h1 {
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.notice {
+  background-color: var(--warning-bg);
+  border-left: 4px solid var(--warning-border);
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.input-area {
+  margin-bottom: 30px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 140px;
+  padding: 16px;
+  font-size: 1rem;
+  border: 1px solid var(--gray-light);
+  border-radius: 16px;
+  resize: vertical;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(139, 184, 232, 0.2);
+}
+
+.counter {
+  text-align: right;
+  color: var(--gray-dark);
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 16px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+  min-height: 48px;
+}
+
+button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  background: var(--gray);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.posts-container {
+  border-top: 1px solid var(--gray-light);
+  padding-top: 20px;
+}
+
+.post {
+  transition: all 0.5s ease;
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.post.expiring {
+  opacity: 0;
+  transform: scale(0.95);
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border: none;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.post-content {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 15px;
+  color: #4A5568;
+  white-space: pre-wrap;
+}
+
+.post-time {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gray-dark);
+  font-size: 0.8rem;
+  padding-top: 12px;
+  border-top: 1px dashed var(--gray-light);
+  margin-top: 15px;
+}
+
+.remaining-time {
+  color: #E53E3E;
+  font-weight: 500;
+}
+
+.loading, .empty {
+  text-align: center;
+  color: var(--gray);
+  padding: 40px 0;
+  font-size: 1.1rem;
+}
+
+footer {
+  margin-top: 30px;
+  text-align: center;
+  color: var(--gray);
+  font-size: 0.8rem;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-light);
+}
+
+/* 移动端适配 */
+@media (max-width: 640px) {
+  body {
+    padding: 12px;
+  }
+  
+  .container {
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 10px;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+  }
+  
+  .post-time {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  textarea {
+    min-height: 120px;
+  }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #7CA9D8;
+    --primary-dark: #5B8ABF;
+    --primary-light: #2D3748;
+    --gray-light: #4A5568;
+    --gray: #718096;
+    --gray-dark: #CBD5E0;
+    --bg: linear-gradient(135deg, #1A202C 0%, #2D3748 100%);
+    --card-bg: rgba(45, 55, 72, 0.95);
+    --warning-bg: #443727;
+    --warning-border: #DD6B20;
+  }
+  
+  body {
+    color: #E2E8F0;
+  }
+  
+  textarea {
+    background-color: rgba(26, 32, 44, 0.8);
+    color: #E2E8F0;
+    border-color: #4A5568;
+  }
+  
+  .post-content {
+    color: #E2E8F0;
+  }
+}
